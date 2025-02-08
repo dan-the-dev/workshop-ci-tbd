@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use server'
 
 // Import the database client and the Todo type from Prisma
@@ -137,6 +138,51 @@ export async function deleteTodo(
     try {
         todo = await db.todo.delete({
             where: { id },
+        })
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return {
+                errors: {
+                    _form: [error.message],
+                },
+            }
+        }
+        else {
+            return {
+                errors: {
+                    _form: ['Something went wrong'],
+                },
+            }
+        }
+    }
+
+    revalidatePath('/')
+    redirect('/')
+}
+
+export async function completeTodo(
+    id: string,
+): Promise<TodoFormState> {
+    return updateCompletedAt(id, new Date())
+}
+
+export async function uncompleteTodo(
+    id: string,
+): Promise<TodoFormState> {
+    return updateCompletedAt(id, null)
+}
+
+async function updateCompletedAt(
+    id: string,
+    value: Date | null,
+): Promise<TodoFormState> {
+    let todo: Todo
+    try {
+        todo = await db.todo.update({
+            where: { id },
+            data: {
+                completedAt: value,
+            }
         })
     } catch (error: unknown) {
         if (error instanceof Error) {

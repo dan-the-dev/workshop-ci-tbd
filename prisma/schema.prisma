@@ -20,4 +20,5 @@ model Todo {
   description   String                          // will generate TEXT
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  completedAt DateTime?
 }

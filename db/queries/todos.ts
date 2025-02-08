@@ -6,7 +6,7 @@ export async function fetchTodos(): Promise<Todo[]> {  // Function to fetch all 
     return await db.todo.findMany({
         orderBy: [
             {
-                updatedAt: 'desc',
+                createdAt: 'desc',
             }
         ],
     })
