@@ -93,9 +93,9 @@ export default async function Home() {
         })}
       </div>
       <div className="w-full flex justify-center mt-4">
-        <button className="btn btn-primary w-full">
-          <Link href="/todos/create">Add task</Link>
-        </button>
+        <Link href="/todos/create" className="btn btn-primary w-full">
+            Add task
+        </Link>
       </div>
     </>
   );
