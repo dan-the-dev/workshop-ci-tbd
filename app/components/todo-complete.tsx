@@ -2,9 +2,6 @@
 
 // Importing the function to delete todos.
 import { completeTodo, uncompleteTodo } from "@/app/actions/todos";
-import Image from "next/image";
-import uncompleteIcon from "../unchecked.svg";
-import completeIcon from "../checked.svg";
 
 // Define the props that the TodoDelete component expects.
 interface TodoCompleteProps {
@@ -30,9 +27,7 @@ export default function TodoComplete({ id, completed }: TodoCompleteProps) {
     // and the deleteAction is performed.
     return <form onSubmit={completeAction} className="w-full">
         <button type="submit">
-            {completed ? 
-                <Image src={completeIcon} alt="Complete" width={48} height={48}/> : 
-                <Image src={uncompleteIcon} alt="Uncomplete" width={48} height={48}/>}
+            {completed ? 'Mark as uncomplete' : 'Mark as complete'}
         </button>
     </form>
 }

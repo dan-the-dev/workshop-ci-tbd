@@ -21,6 +21,6 @@ export default {
     daisyui,
   ],
   daisyui: {
-    themes: ["business"],
+    themes: ["emerald"],
   },
 } satisfies Config;
