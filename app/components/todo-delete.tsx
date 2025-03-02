@@ -13,7 +13,9 @@ export default function TodoDelete({ id }: TodoDeleteProps) {
     // This is how we do it if we omit the bind from the server action
     const deleteAction = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Prevent the form from being submitted in the traditional way.
-        deleteTodo(id); // Delete the todo with the given ID.
+
+        if (confirm('Are you sure you want to delete this todo?'))
+            deleteTodo(id); // Delete the todo with the given ID.
     };
 
     // Render a form with a single submit button. When the button is clicked, the form is submitted 

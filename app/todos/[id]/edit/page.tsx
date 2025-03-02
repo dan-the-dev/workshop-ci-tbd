@@ -20,10 +20,6 @@ export default async function TodosEdit({ params }: TodosEditProps) {
     const updateAction = updateTodo.bind(null, id)
 
     return (
-        <main className="flex min-h-screen flex-col items-start p-24">
-            <div className="mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-                <TodoForm formAction={updateAction} initialData={{ name: todo?.name ?? '', description: todo?.description ?? '' }} />
-            </div>
-        </main>
+        <TodoForm formAction={updateAction} initialData={{ name: todo?.name ?? '', description: todo?.description ?? '' }} />
     );
 }
