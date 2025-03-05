@@ -56,7 +56,7 @@ export default function TodoForm({ formAction, initialData }: TodoFormProps) {
         <form action={action} className="w-full flex flex-col gap-4">
             <fieldset className="fieldset">
                 <legend className="fieldset-legend">{"The name of the task"}</legend>
-                <input type="text" name="name" className="input w-full" placeholder="Name" defaultValue={initialData.name} />
+                <input type="text" name="name" className="input w-full" placeholder="Name" defaultValue={initialData.name} data-testid="name"/>
             </fieldset>
             <fieldset className="fieldset">
                 <legend className="fieldset-legend">{"Describe the task"}</legend>
@@ -66,6 +66,7 @@ export default function TodoForm({ formAction, initialData }: TodoFormProps) {
                     defaultValue={initialData.description}
                     placeholder="Description"
                     className="textarea textarea-bordered textarea-lg w-full grow"
+                    data-testid="description"
                 ></textarea>
                 {formState.errors.description && (
                   <p className="text-red-500">
@@ -73,7 +74,7 @@ export default function TodoForm({ formAction, initialData }: TodoFormProps) {
                   </p>
                 )}
             </fieldset>
-            <button className="btn btn-primary grow" type="submit">
+            <button className="btn btn-primary grow" type="submit" data-testid="save">
               Save
             </button>
             <button className="btn btn-accent btn-outline">

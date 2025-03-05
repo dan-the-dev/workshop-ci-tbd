@@ -21,6 +21,6 @@ export default function TodoDelete({ id }: TodoDeleteProps) {
     // Render a form with a single submit button. When the button is clicked, the form is submitted 
     // and the deleteAction is performed.
     return <form onSubmit={deleteAction} className="w-full">
-        <button type="submit">Delete</button>
+        <button type="submit" data-testid="delete">Delete</button>
     </form>
 }

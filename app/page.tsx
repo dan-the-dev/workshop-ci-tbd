@@ -42,7 +42,7 @@ export default async function Home() {
             >
               <div className="card-body">
                 <div className="card-actions justify-end text-base-content absolute top-0 right-0">
-                  <div className="dropdown dropdown-end">
+                  <div className="dropdown dropdown-end" data-testid="item-dropdown">
                     <div
                       tabIndex={0}
                       role="button"
@@ -93,7 +93,7 @@ export default async function Home() {
         })}
       </div>
       <div className="w-full flex justify-center mt-4">
-        <Link href="/todos/create" className="btn btn-primary w-full">
+        <Link href="/todos/create" className="btn btn-primary w-full" data-testid="add-task">
             Add task
         </Link>
       </div>
