@@ -42,7 +42,7 @@ export default async function Home() {
             >
               <div className="card-body">
                 <div className="card-actions justify-end text-base-content absolute top-0 right-0">
-                  <div className="dropdown dropdown-end" data-testid="item-dropdown">
+                  <div className="dropdown dropdown-end z-50" data-testid="item-dropdown">
                     <div
                       tabIndex={0}
                       role="button"

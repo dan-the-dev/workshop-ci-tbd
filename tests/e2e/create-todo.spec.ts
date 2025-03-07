@@ -5,7 +5,7 @@ test('create todo', async ({ page }) => {
 
   await page.getByTestId('add-task').click();
 
-  await page.getByTestId('name').fill('TODO 1');
+  await page.getByTestId('name').fill('TODO TEST 1');
   await page.getByTestId('description').fill('Lorem ipsum dolor sit amet...');
   await page.getByTestId('save').click();
 
