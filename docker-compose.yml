@@ -26,5 +26,19 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     restart: unless-stopped
 
+  postgres-test:
+    container_name: container-pg-test
+    image: postgres
+    hostname: localhost
+    ports: ["15433:5432"]
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: testapp
+    volumes:
+      - postgres-data-test:/var/lib/postgresql/data
+    restart: unless-stopped
+
 volumes:
   postgres-data:
+  postgres-data-test:
