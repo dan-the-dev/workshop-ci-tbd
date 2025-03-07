@@ -2,6 +2,7 @@
 
 // Importing the function to delete todos.
 import { completeTodo, uncompleteTodo } from "@/app/actions/todos";
+import { redirect } from 'next/navigation';
 
 // Define the props that the TodoDelete component expects.
 interface TodoCompleteProps {
@@ -12,15 +13,16 @@ interface TodoCompleteProps {
 export default function TodoComplete({ id, completed }: TodoCompleteProps) {
     // Define the action to perform when the form is submitted.
     // This is how we do it if we omit the bind from the server action
-    const completeAction = (event: React.FormEvent<HTMLFormElement>) => {
+    const completeAction = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Prevent the form from being submitted in the traditional way.
         
         // Complete or uncomplete the todo with the given ID.
         if (completed) {
-            uncompleteTodo(id);
-            return;
+            await uncompleteTodo(id);
+            redirect('/');
         }
-        completeTodo(id)
+        await completeTodo(id);
+        redirect('/');
     };
 
     // Render a form with a single submit button. When the button is clicked, the form is submitted 

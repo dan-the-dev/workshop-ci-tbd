@@ -77,11 +77,9 @@ export default function TodoForm({ formAction, initialData }: TodoFormProps) {
             <button className="btn btn-primary grow" type="submit" data-testid="save">
               Save
             </button>
-            <button className="btn btn-accent btn-outline">
-              <Link href="/" className="bg-red px-4 py-2 rounded">
-                Cancel
-              </Link>
-            </button>
+            <Link href="/" className="btn btn-accent btn-outline bg-red px-4 py-2 rounded">
+              Cancel
+            </Link>
         </form>
       </div>
     </>

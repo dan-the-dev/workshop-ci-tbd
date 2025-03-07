@@ -2,6 +2,7 @@
 
 // Importing the function to delete todos.
 import { deleteTodo } from "@/app/actions/todos";
+import { redirect } from 'next/navigation';
 
 // Define the props that the TodoDelete component expects.
 interface TodoDeleteProps {
@@ -14,8 +15,10 @@ export default function TodoDelete({ id }: TodoDeleteProps) {
     const deleteAction = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Prevent the form from being submitted in the traditional way.
 
-        if (confirm('Are you sure you want to delete this todo?'))
+        if (confirm('Are you sure you want to delete this todo?')){
             deleteTodo(id); // Delete the todo with the given ID.
+            redirect('/')
+        }
     };
 
     // Render a form with a single submit button. When the button is clicked, the form is submitted 

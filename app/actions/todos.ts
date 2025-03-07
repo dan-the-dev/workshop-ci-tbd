@@ -21,7 +21,7 @@ const todoSchema = z.object({
 })
 
 // Define an interface for the form state
-interface TodoFormState {
+export interface TodoFormState {
     errors: {
         name?: string[],
         description?: string[],
@@ -33,7 +33,7 @@ interface TodoFormState {
 export async function createTodo(
     formState: TodoFormState,
     formData: FormData
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     // Validate the form data against the todo schema
     // If the form data does not match the schema, the safeParse method returns an object 
     // with a success property of false and an error property containing the validation errors. 
@@ -79,17 +79,13 @@ export async function createTodo(
             }
         }
     }
-
-    // Revalidate the path and redirect to the home page
-    revalidatePath('/')
-    redirect('/')
 }
 
 export async function updateTodo(
     id: string,
     formState: TodoFormState,
     formData: FormData
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     const result = todoSchema.safeParse({
         name: formData.get('name'),
         description: formData.get('description'),
@@ -126,14 +122,11 @@ export async function updateTodo(
             }
         }
     }
-
-    revalidatePath('/')
-    redirect('/')
 }
 
 export async function deleteTodo(
     id: string,
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     let todo: Todo
     try {
         todo = await db.todo.delete({
@@ -155,27 +148,24 @@ export async function deleteTodo(
             }
         }
     }
-
-    revalidatePath('/')
-    redirect('/')
 }
 
 export async function completeTodo(
     id: string,
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     return updateCompletedAt(id, new Date())
 }
 
 export async function uncompleteTodo(
     id: string,
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     return updateCompletedAt(id, null)
 }
 
 async function updateCompletedAt(
     id: string,
     value: Date | null,
-): Promise<TodoFormState> {
+): Promise<TodoFormState|void> {
     let todo: Todo
     try {
         todo = await db.todo.update({
@@ -200,7 +190,4 @@ async function updateCompletedAt(
             }
         }
     }
-
-    revalidatePath('/')
-    redirect('/')
 }
