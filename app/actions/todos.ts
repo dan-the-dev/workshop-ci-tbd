@@ -5,10 +5,6 @@
 import { db } from '@/db'
 import type { Todo } from '@prisma/client'
 
-// Import the revalidatePath and redirect functions from Next.js
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
-
 // Import the Zod library for validation
 import { z } from 'zod'
 

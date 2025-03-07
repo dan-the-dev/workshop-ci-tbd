@@ -14,7 +14,7 @@
     "test-e2e": "npx playwright test",
     "test-e2e-ui": "npx playwright test --ui",
     "test": "DOTENV_CONFIG_PATH=./.env.test jest",
-    "test:ci": "DOTENV_CONFIG_PATH=./.env.ci jest --ci"
+    "pretest": "cp ./.env.test ./.env && prisma generate && prisma db push && cp ./.env.example ./.env "
   },
   "dependencies": {
     "@prisma/client": "^6.3.0",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@playwright/test": "^1.50.1",
+    "@quramy/jest-prisma": "^1.8.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^19",
