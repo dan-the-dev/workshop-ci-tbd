@@ -2,16 +2,12 @@ import { updateTodo } from "@/app/actions/todos";
 import TodoForm from "@/app/components/todo-form";
 import { fetchTodoById } from "@/db/queries/todos";
 
-interface TodosEditProps {
-    params: {
-        id: string;
-    };
-}
+type TodosEditProps = Promise<{ params: { id: string } }>
 
 // Defining a new page, server component TodosEdit
-export default async function TodosEdit({ params }: TodosEditProps) {
+export default async function TodosEdit(props: { params: TodosEditProps }) {
     // Receives params as a prop, which includes the id of the todo to be edited.
-    const { id } = params;
+    const { id } = (await props.params).params;
 
     // Fetches the todo from the database
     const todo = await fetchTodoById(id)
