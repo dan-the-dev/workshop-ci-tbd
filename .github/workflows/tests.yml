@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # This env variable will be used by your app/test suite.
-      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/testdb"
+      DATABASE_URL: "postgresql://test:test@localhost:15433/testapp"
     services:
       postgres:
         image: postgres:13
         ports:
-          - 5432:5432
+          - 15433:5432
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: testapp
         options: >-
           --health-cmd pg_isready
           --health-interval 10s

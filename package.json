@@ -13,7 +13,7 @@
     "db-reset": "npx prisma db push --force-reset",
     "test-e2e": "npx playwright test",
     "test-e2e-ui": "npx playwright test --ui",
-    "test": "DOTENV_CONFIG_PATH=./.env.test jest",
+    "test": "jest",
     "pretest": "cp ./.env.test ./.env && prisma generate && prisma db push && cp ./.env.example ./.env "
   },
   "dependencies": {
