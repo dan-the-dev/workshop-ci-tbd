@@ -29,7 +29,7 @@ export interface TodoFormState {
 export async function createTodo(
     formState: TodoFormState,
     formData: FormData
-): Promise<TodoFormState|void> {
+): Promise<TodoFormState|Todo> {
     // Validate the form data against the todo schema
     // If the form data does not match the schema, the safeParse method returns an object 
     // with a success property of false and an error property containing the validation errors. 
@@ -75,13 +75,14 @@ export async function createTodo(
             }
         }
     }
+    return todo;
 }
 
 export async function updateTodo(
     id: string,
     formState: TodoFormState,
     formData: FormData
-): Promise<TodoFormState|void> {
+): Promise<TodoFormState|Todo> {
     const result = todoSchema.safeParse({
         name: formData.get('name'),
         description: formData.get('description'),
@@ -118,6 +119,7 @@ export async function updateTodo(
             }
         }
     }
+    return todo;
 }
 
 export async function deleteTodo(
