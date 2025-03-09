@@ -44,7 +44,7 @@ jobs:
       # it can be useful to include an extra wait step.
       - name: Wait for Postgres to be ready
         run: |
-          until pg_isready -h localhost -p 5432; do
+          until pg_isready -h localhost -p 15433; do
             echo "Waiting for Postgres..."
             sleep 2
           done
