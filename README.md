@@ -1,42 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **TechVibes TODO App – Workshop** 🚀  
 
-## Getting Started
+Benvenuti nel workshop **TechVibes TODO App**! 🎉 Qui avrete l'opportunità di lavorare su un'app full-stack, migliorandone le funzionalità attraverso una serie di esercizi mirati.  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## **📌 Contesto: Benvenuti in TechVibes**  
+
+TechVibes è una **startup innovativa** che sta rivoluzionando il modo in cui i team gestiscono le proprie attività quotidiane. Stiamo costruendo una **TODO App** che aiuti le persone a organizzare il lavoro in modo efficace, con un'interfaccia semplice e funzionalità avanzate.  
+
+Siete stati appena assunti nel team di sviluppo e il vostro primo incarico è **migliorare l’app esistente**, che al momento permette solo di **creare e visualizzare** task. La roadmap prevede nuove funzionalità fondamentali: **modifica, eliminazione, gestione dello stato e delle priorità**.  
+
+Il vostro obiettivo è lavorare **seguendo le migliori pratiche** e applicando strategie come **Parallel Change, Feature Flag e Keystone Interface** per rendere il codice scalabile e manutenibile nel tempo.  
+
+---
+
+## **⚖️ Regole del Workshop**  
+
+✅ **Team Mob Programming**
+
+L'esercizio verrà svolto da team di 4 persone utilizzando la pratica del Mob Programming. Potete leggere qualcosa a riguardo [qui](https://www.pluralsight.com/resources/blog/software-development/mob-programming-101), ma in breve questo significa:
+
+- Ogni team avrà a disposizione una breakout room per lavorare insieme.
+- A rotazione, ognuno dei membri del team sarà driver, ovvero condividerà lo schermo e gestirà la scrittura del codice
+- Tutti gli altri membri del team sono navigators: devono comunicare attivamente e collaborare, tra di loro ed insieme al driver, per implementare quanto richiesto dall'esercizio
+- Lo scambio di ruoli avviene tramite timer, seguendo la tecnica del Pomodoro: ogni 25 minuti è obbligatorio cambiare driver
+- Lo scambio di ruoli deve obbligatoriamente avvenire tramite push delle modifiche fatte, anche se scegliete di utilizzate tool di scrittura codice collaborativa
+
+✅ **Extreme Trunk-Based Development: no branches, pipeline sempre verde**  
+
+È obbligatorio lavorare direttamente sul branch principale (master), senza aprire branch. Ogni volta che viene richiesto di fare push delle modifiche, questo deve avvenire direttamente su master.
+
+Inoltre, la pipeline di test e deploy dopo il push deve sempre rimanere verde. Se la pipeline dovesse rompersi, fixarla diventa la priorità assoluta del team: non si può procedere con l'esercizio finchè la pipeline non è stata sistemata.
+
+✅ **Push obbligatori!**  
+
+In alcuni step dell'esercizio, riceverete l'indicazione di fare obbligatoriamente push tra una modifica e l'altra - quando il team arriva ad uno step e trova il comando di push obbligatorio, deve per forza fare push (anche se non sono ancora passati i 25 minuti per lo switch).
+
+Il comando è il seguente:
+
+🚨 Push forzato 🚨 Prima di proseguire, devi per forza fare push delle tue modifiche.
+
+✅ **Divertimento e condivisione**  
+
+- Durante il workshop discuteremo le soluzioni e valuteremo insieme le scelte fatte.  
+- Siate curiosi e aperti al confronto
+- Divertitevi!
+
+---
+
+## **🛠️ Setup dell’Ambiente di Sviluppo**  
+
+Assicurati di avere installati:  
+
+- **Node.js** (consigliata v20)  
+- **npm** (incluso con Node.js)  
+- **Docker** per avere **Docker Compose**  
+
+### **1️⃣ Installazione**  
+
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **2️⃣ Avviare il DB**  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+docker-compose up -d
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **3️⃣ Avviare l'applicazione**  
 
-## Learn More
+```sh
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+L’app sarà disponibile su <http://localhost:3000> 🚀.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **4️⃣ Avviare l’applicazione**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run test
+```
 
-## Deploy on Vercel
+Dovresti vedere i test esistenti passare con successo. Man mano che implementerai nuove funzionalità, aggiorna e aggiungi test dove necessario.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ora sei pronto per iniziare il workshop! 🎯 Buon coding e benvenuto in TechVibes! 🚀
 
-## Workshop notes
+---
 
-### Setup
+## **🛠️ Setup pipeline e rilascio
 
-Tutorial: <https://fajarwz.com/blog/simple-full-stack-crud-with-nextjs-14-postgresql-and-prisma/>
+La pipeline di rilascio avviene tramite GitHub Actions + Vercel.
+Su GitHub Actions vengono eseguiti i test automatici in un ambiente containerizzato, mentre su Vercel viene eseguito il deploy.
+
+NB: i due processi sono paralleli, non consequenziali - solo per semplicità per l'esercizio.
+
+### Step 1: Crea il DB di produzione
+
+Per prima cosa, ci serve un database PostgreSQL da utilizzare in "produzione". Potete utilizzare qualunque hosting gratuito, per esempio:
+
+- Neon DB
+- Supabase
+
+Una volta configurato il DB sul servizio di hosting, salvatevi la stringa di connessione al DB.
+
+### Step 2: GitHub Actions
+
+Non dovrebbe essere richiesto nessun intervento da parte vostra - al primo push dovreste vedere i test verdi nelle GitHub Actions.
+
+### Step 3: Vercel
+
+Se non lo siete già, iscrivetevi gratuitamente a Vercel usando il vostro account GitHub.
+Una volta dentro, dalla pagina "overview" cliccate su "Add New..." -> "Project".
+
+Vercel mostrerà la lista dei vostri repository GitHub, e potrete selezionarlo per configurare velocemente un deploy.
+Una volta selezionato il progetto, aprite la sezione "Environment Variables" ed inserite una variabile chiamata DATABASE_URL, come valore utilizzate la stringa di connessione al DB ottenuta allo step 1.
+
+Cliccate infine su "Deploy" per far partire il primo deploy della vostra TODO List.
